@@ -24,12 +24,31 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Debug: env, Node/npm, files
+        env:
+          BASE_URL: '/BudgetWise/'
+        run: |
+          echo "---- ENV ----"
+          env | sort
+          echo "---- VERSIONS ----"
+          node -v || true
+          npm -v || true
+          echo "---- WORKDIR ----"
+          pwd
+          echo "---- ROOT FILES ----"
+          ls -la
+          echo "---- package.json ----"
+          cat package.json || true
+
       - name: Build
         env:
           # For a repo site, set BASE_URL to '/<repo-name>/'.
           BASE_URL: '/BudgetWise/'
         run: |
+          set -x
           npm run build
+          echo "---- DIST LISTING ----"
+          ls -la dist || true
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v1
