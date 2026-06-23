@@ -25,10 +25,10 @@ jobs:
         run: npm ci
 
       - name: Build
+        env:
+          # For a repo site, set BASE_URL to '/<repo-name>/'.
+          BASE_URL: '/BudgetWise/'
         run: |
-          # Set BASE_URL so Vite emits correct asset paths for repo pages
-          # If your repo is `Niiflheim01/BudgetWise`, BASE_URL should be '/BudgetWise/'
-          echo "BASE_URL=${{ env.BASE_URL || '/BudgetWise/' }}" >> $GITHUB_ENV
           npm run build
 
       - name: Upload artifact for GitHub Pages
