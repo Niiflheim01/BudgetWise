@@ -147,7 +147,7 @@ const Dashboard: React.FC = () => {
       )}
 
       {/* ── KPI CARDS ────────────────────────── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
           {
             label: 'Monthly Income',
@@ -194,24 +194,24 @@ const Dashboard: React.FC = () => {
             sub: formatPeso(unspent) + ' saved',
           },
         ].map((kpi) => (
-          <div key={kpi.label} className="card p-5 group hover:-translate-y-0.5 hover:shadow-card-lg transition-all duration-300">
-            <div className="flex items-start justify-between mb-4">
-              <div className={`w-10 h-10 rounded-xl ${kpi.iconBg} flex items-center justify-center`}>
-                <kpi.icon className={`w-5 h-5 ${kpi.iconColor}`} />
+          <div key={kpi.label} className="card p-7 group hover:-translate-y-1 hover:shadow-card-lg transition-all duration-300">
+            <div className="flex items-start justify-between mb-5">
+              <div className={`w-12 h-12 rounded-xl ${kpi.iconBg} flex items-center justify-center`}>
+                <kpi.icon className={`w-6 h-6 ${kpi.iconColor}`} />
               </div>
               <span className={`badge text-[10px] ${kpi.trendUp ? 'badge-emerald' : 'badge-amber'}`}>
                 {kpi.trendUp ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
                 {kpi.trend}
               </span>
             </div>
-            <div className="text-2xl font-black text-slate-900 dark:text-white mb-0.5">
+            <div className="text-3xl font-black text-slate-900 dark:text-white mb-1">
               {kpi.isAmount
                 ? <AnimatedNumber value={kpi.value as number} prefix="₱" />
                 : <AnimatedNumber value={kpi.value as number} suffix="%" />
               }
             </div>
-            <div className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">{kpi.label}</div>
-            <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{kpi.sub}</div>
+            <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">{kpi.label}</div>
+            <div className="text-sm text-slate-400 dark:text-slate-500 mt-1">{kpi.sub}</div>
           </div>
         ))}
       </div>
